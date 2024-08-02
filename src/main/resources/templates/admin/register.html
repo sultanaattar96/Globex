@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Registration Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <link rel="stylesheet" th:href="@{/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css}">
+    
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    
+    <!-- Include your validation.js file -->
+<!--     <script src="validation.js"></script> -->
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Login and Registration App</a>
+    </div>
+</nav>
+
+<div class="wrapper" th:style="'background-image: url(' + @{/img/bg-registration-form-1.jpg} + ');'">
+    <div class="inner">
+        <div class="image-holder">
+            <img th:src="@{/img/registration-form-1.jpg}" alt="">
+        </div>
+        <form id="adminRegistrationForm" th:action="@{/api/v1/admin/registration}" th:object="${user}" method="post" onsubmit="return validateForm()">
+            <h3>Admin Registration Form</h3>
+            
+            <!-- Successful Registration -->
+            <div th:if="${param.success}">
+                <div class="alert alert-info">
+                    You have successfully registered!
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="text" th:field="*{firstName}" placeholder="First Name" class="form-control" required>
+                <input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control" required>
+            </div>
+            <div class="form-wrapper">
+                <input type="email" th:field="*{email}" placeholder="Email Address" class="form-control" required>
+                <i class="zmdi zmdi-email"></i>
+            </div>
+            <div class="form-wrapper">
+                <input type="tel" th:field="*{mobileNumber}" placeholder="Mobile Number" class="form-control" required>
+                <i class="zmdi zmdi-phone"></i>
+            </div>
+            <div class="form-wrapper">
+                <select th:field="*{gender}" class="form-control" required>
+                    <option value="" disabled selected>Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+                <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
+            </div>
+            <div class="form-wrapper">
+                <input type="text" th:field="*{address}" placeholder="Address" class="form-control" required>
+                <i class="zmdi zmdi-home"></i>
+            </div>
+            <div class="form-wrapper">
+                <input type="text" th:field="*{postcode}" placeholder="Postcode" class="form-control" required>
+                <i class="zmdi zmdi-pin"></i>
+            </div>
+            <div class="form-wrapper">
+                <input type="password" th:field="*{password}" placeholder="Password" class="form-control" required>
+                <i class="zmdi zmdi-lock"></i>
+            </div>
+            <div class="form-wrapper">
+                <input type="password" th:field="*{confirmPassword}" placeholder="Confirm Password" class="form-control" required>
+                <i class="zmdi zmdi-lock"></i>
+            </div>
+            <!-- Hidden field for role -->
+            <input type="hidden" th:field="*{role}" value="ADMIN">
+            <button type="submit">Register <i class="zmdi zmdi-arrow-right"></i></button>
+            
+            <!-- Error message display -->
+            <!-- <div th:if="${#fields.hasErrors('*')}">
+                <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+            </div> -->
+            
+            <span>Already registered? <a href="/" th:href="@{/api/v1/login}">Login here</a></span>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

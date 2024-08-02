@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/css/elegant-icons.css}" rel="stylesheet">
+    <link th:href="@{/css/jquery-ui.min.css}" rel="stylesheet">
+    <link th:href="@{/css/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{/css/slicknav.min.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section Begin -->
+    <div th:replace="header :: header"></div>
+    <!-- Header Section End -->
+
+    <!-- Product Details Section Begin -->
+    <section class="product-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__pic">
+                        <div class="product__details__pic__item">
+                            <img th:src="@{'/products/image/' + ${product.id}}" alt="Product Image">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__text">
+                        <h3 th:text="${product.name}"></h3>
+                        <div class="product__details__price" th:text="${product.price}"></div>
+                        <p th:text="${product.description}"></p>
+                        <a href="#" th:href="@{'/cart/add/' + ${product.id}}" class="primary-btn">ADD TO CART</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Rating Section Begin -->
+            <div class="row mt-5">
+                <div class="col-lg-6 col-md-6 offset-lg-3 offset-md-3">
+                    <div class="rating-section bg-light p-4 rounded">
+                        <h4 class="mb-4 text-center">Rate this product</h4>
+                        <form th:action="@{'/products/' + ${product.id} + '/rate'}" method="post" class="needs-validation" novalidate>
+                            <div class="form-group">
+                                <label for="rating" class="form-label">Select Rating:</label>
+                                <select name="rating" id="rating" class="form-control" required>
+                                    <option value="" disabled selected>Choose your rating</option>
+                                    <option value="1">1 - Poor</option>
+                                    <option value="2">2 - Fair</option>
+                                    <option value="3">3 - Good</option>
+                                    <option value="4">4 - Very Good</option>
+                                    <option value="5">5 - Excellent</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a rating.
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Submit Rating</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Rating Section End -->
+        </div>
+    </section>
+    <!-- Product Details Section End -->
+
+    <!-- Include Footer -->
+    <div th:replace="footer :: footer"></div>
+
+    <!-- Js Plugins -->
+    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{/js/jquery-ui.min.js}"></script>
+    <script th:src="@{/js/mixitup.min.js}"></script>
+    <script th:src="@{/js/jquery.countdown.min.js}"></script>
+    <script th:src="@{/js/jquery.slicknav.js}"></script>
+    <script th:src="@{/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/js/jquery.nicescroll.min.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+
+    <!-- Form Validation Script -->
+    <script>
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</body>
+</html>
