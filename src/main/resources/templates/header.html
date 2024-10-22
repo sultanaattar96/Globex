@@ -8,7 +8,7 @@
     <meta name="keywords" content="Ashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title th:insert="${title}">GlobeX</title>
+    <title th:text="${title}">GlobeX</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
@@ -52,11 +52,15 @@
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__auth">
+            <!-- If the user is authenticated -->
             <div sec:authorize="isAuthenticated()">
-                <p>Hello, <span sec:authentication="principal.firstName">User</span>!</p>
-                <a th:href="@{/api/v1/logout}">Logout</a>
+                <p>Hello, <span sec:authentication="principal.firstName">User!! </span> <a th:href="@{/api/v1/logout}">Logout</a></p>
             </div>
-            
+            <!-- If the user is not authenticated -->
+           <!--  <div sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login.html}">Login</a>
+                <a th:href="@{/register.html}">Register</a>
+            </div> -->
         </div>
     </div>
     <!-- Offcanvas Menu End -->
@@ -82,7 +86,7 @@
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a th:href="@{/product-details.html}">Product Details</a></li>
-                                    <li><a th:href="@{/shop-cart.html}">Shop Cart</a></li>
+                                    <li><a th:href="@{/cart/cart.html}">Shop Cart</a></li>
                                     <li><a th:href="@{/checkout.html}">Checkout</a></li>
                                     <li><a th:href="@{/blog-details.html}">Blog Details</a></li>
                                 </ul>
@@ -95,21 +99,23 @@
                 <div class="col-lg-3">
                     <div class="header__right">
                         <div class="header__right__auth">
+                            <!-- Displayed if the user is authenticated -->
                             <div sec:authorize="isAuthenticated()">
-                                <p>Hello, <span sec:authentication="principal.firstName">User</span>!</p>
-                                <a th:href="@{/api/v1/logout}">Logout</a>
+                                <p>Hello, <span sec:authentication="principal.firstName">User!! </span> <a th:href="@{/api/v1/logout}">Logout</a></p>
+                                
                             </div>
-                            <div sec:authorize="!isAuthenticated()">
+                            <!-- Displayed if the user is not authenticated -->
+                            <!-- <div sec:authorize="!isAuthenticated()">
                                 <a th:href="@{/login.html}">Login</a>
                                 <a th:href="@{/register.html}">Register</a>
-                            </div>
+                            </div> -->
                         </div>
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>
                             <li><a href="#"><span class="icon_heart_alt"></span>
                                 <div class="tip">2</div>
                             </a></li>
-                            <li><a href="#"><span class="icon_bag_alt"></span>
+                            <li><a href="cart/cart.html"><span class="icon_bag_alt"></span>
                                 <div class="tip">2</div>
                             </a></li>
                         </ul>

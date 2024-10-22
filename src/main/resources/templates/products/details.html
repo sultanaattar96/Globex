@@ -33,7 +33,13 @@
                         <h3 th:text="${product.name}"></h3>
                         <div class="product__details__price" th:text="${product.price}"></div>
                         <p th:text="${product.description}"></p>
-                        <a href="#" th:href="@{'/cart/add/' + ${product.id}}" class="primary-btn">ADD TO CART</a>
+                        <form th:action="@{'/cart/add/' + ${product.id}}" method="post">
+                        <div class="quantity">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" id="quantity" name="quantity" value="1" min="1">
+                        </div>
+                        <button type="submit" class="primary-btn">ADD TO CART</button>
+                    </form>
                     </div>
                 </div>
             </div>

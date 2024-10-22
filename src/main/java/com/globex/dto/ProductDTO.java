@@ -12,8 +12,19 @@ public class ProductDTO {
     private Integer categoryId;
     private String createdAt;
     private String image;
+    
+ // Constructor
+    public ProductDTO(String name, String description, BigDecimal price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
 
-    // Getters and Setters
+    public ProductDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	// Getters and Setters
     public Long getId() {
         return id;
     }

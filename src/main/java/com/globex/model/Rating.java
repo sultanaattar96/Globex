@@ -26,6 +26,13 @@ public class Rating {
     private Product product;
 
     private int rating;
+    
+    private int ratingValue; // Assuming this is the field that stores the rating
+
+    // Add a getter method
+    public int getRatingValue() {
+        return ratingValue;
+    }
 
 	public int getRating() {
 		return rating;

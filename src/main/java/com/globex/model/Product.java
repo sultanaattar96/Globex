@@ -49,6 +49,30 @@ public class Product {
     @OneToMany(mappedBy = "product")
     @JsonManagedReference
     private Set<Rating> ratings;
+    
+    @Column(name = "sales_count", nullable = false, columnDefinition = "int default 0")
+    private int salesCount;
+
+    @Column(name = "recent_views", nullable = false, columnDefinition = "int default 0")
+    private int recentViews;
+
+    // Getters and Setters...
+    
+    public int getSalesCount() {
+        return salesCount;
+    }
+
+    public void setSalesCount(int salesCount) {
+        this.salesCount = salesCount;
+    }
+
+    public int getRecentViews() {
+        return recentViews;
+    }
+
+    public void setRecentViews(int recentViews) {
+        this.recentViews = recentViews;
+    }
 
     public Long getId() {
         return id;

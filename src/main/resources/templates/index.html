@@ -165,9 +165,118 @@
         </div>
     </section>
     <!-- Recommendation Section End -->
+    
+    <!-- Trending Products Section Begin -->
+	<section class="trending-products spad">
+	    <div class="container">
+	        <div class="section-title">
+	            <h4>Trending Products</h4>
+	        </div>
+	        <div class="row property__gallery">
+	            <div th:each="product : ${trendingProducts}" class="col-lg-3 col-md-4 col-sm-6 mix">
+	                <div class="product__item">
+	                    <div class="product__item__pic set-bg">
+	                        <img th:src="@{'/products/image/' + ${product.id}}" alt="Product Image" class="product-image" />
+	                        <div class="label new">Trending</div>
+	                        <ul class="product__hover">
+	                            <li><a th:href="@{'/products/image/' + ${product.id}}" class="image-popup"><span class="arrow_expand"></span></a></li>
+	                            <li>
+	                                <a href="javascript:void(0);" class="like-button" th:data-product-id="${product.id}">
+	                                    <span class="icon_heart_alt"></span>
+	                                </a>
+	                            </li>
+	                            <li><a th:href="@{'/cart/add/' + ${product.id}}"><span class="icon_bag_alt"></span></a></li>
+	                        </ul>
+	                    </div>
+	                    <div class="product__item__text">
+	                        <h6><a th:href="@{'/products/' + ${product.id}}" th:text="${product.name}"></a></h6>
+	                        <div class="rating">
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+	                        </div>
+	                        <div class="product__price" th:text="${'$ ' + product.price}"></div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</section>
+	<!-- Trending Products Section End -->
+	
+	<!-- Best Sellers Section Begin -->
+	<section class="best-sellers spad">
+	    <div class="container">
+	        <div class="section-title">
+	            <h4>Best Sellers</h4>
+	        </div>
+	        <div class="row property__gallery">
+	            <div th:each="product : ${bestSellers}" class="col-lg-3 col-md-4 col-sm-6 mix">
+	                <div class="product__item">
+	                    <div class="product__item__pic set-bg">
+	                        <img th:src="@{'/products/image/' + ${product.id}}" alt="Product Image" class="product-image" />
+	                        <div class="label new">Best Seller</div>
+	                        <ul class="product__hover">
+	                            <li><a th:href="@{'/products/image/' + ${product.id}}" class="image-popup"><span class="arrow_expand"></span></a></li>
+	                            <li>
+	                                <a href="javascript:void(0);" class="like-button" th:data-product-id="${product.id}">
+	                                    <span class="icon_heart_alt"></span>
+	                                </a>
+	                            </li>
+	                            <li><a th:href="@{'/cart/add/' + ${product.id}}"><span class="icon_bag_alt"></span></a></li>
+	                        </ul>
+	                    </div>
+	                    <div class="product__item__text">
+	                        <h6><a th:href="@{'/products/' + ${product.id}}" th:text="${product.name}"></a></h6>
+	                        <div class="rating">
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+	                            <i class="fa fa-star"></i>
+	                        </div>
+	                        <div class="product__price" th:text="${'$ ' + product.price}"></div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</section>
+	<!-- Best Sellers Section End -->
+	
+	<!--<h1>Recommended Hybrid Products</h1>
+    <ul>
+        <th:block th:each="product : ${recommendedProducts}">
+            <li>
+                <h2 th:text="${product.name}">Product Name</h2>
+                <p th:text="${product.description}">Product Description</p>
+                <p>Price: <span th:text="${product.price}">0.00</span></p>
+            </li>
+        </th:block>
+    </ul> -->
+
+
+    
+    <!-- User Preferences Section Begin -->
+    <!-- <section class="recommendation spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h4>Use Preferences List</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="userPreferences-container">
+            </div>
+        </div>
+    </section> -->
+    <!-- User Preferences Section End -->
 
     <!-- Product Section Begin -->
-    <section class="product spad">
+    <!-- <section class="product spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
@@ -369,7 +478,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Product Section End -->
 
     <!-- Banner Section Begin -->
@@ -407,7 +516,7 @@
     <!-- Banner Section End -->
 
     <!-- Trend Section Begin -->
-    <section class="trend spad">
+    <!-- <section class="trend spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6">
@@ -577,8 +686,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Trend Section End -->
+    
+    <br>
+    <br>
 
     <!-- Discount Section Begin -->
     <section class="discount">
@@ -667,7 +779,7 @@
                     <div class="instagram__item" th:style="'background-image: url(' + @{/img/instagram/insta-1.jpg} + ');'">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
-                            <a href="#">@ ashion_shop</a>
+                            <a href="#">@ globex</a>
                         </div>
                     </div>
                 </div>
@@ -675,7 +787,7 @@
                     <div class="instagram__item" th:style="'background-image: url(' + @{/img/instagram/insta-2.jpg} + ');'">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
-                            <a href="#">@ ashion_shop</a>
+                            <a href="#">@ globex</a>
                         </div>
                     </div>
                 </div>
@@ -683,7 +795,7 @@
                     <div class="instagram__item" th:style="'background-image: url(' + @{/img/instagram/insta-3.jpg} + ');'">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
-                            <a href="#">@ ashion_shop</a>
+                            <a href="#">@ globex</a>
                         </div>
                     </div>
                 </div>
@@ -691,7 +803,7 @@
                     <div class="instagram__item" th:style="'background-image: url(' + @{/img/instagram/insta-4.jpg} + ');'">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
-                            <a href="#">@ ashion_shop</a>
+                            <a href="#">@ globex</a>
                         </div>
                     </div>
                 </div>
@@ -699,7 +811,7 @@
                     <div class="instagram__item" th:style="'background-image: url(' + @{/img/instagram/insta-5.jpg} + ');'">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
-                            <a href="#">@ ashion_shop</a>
+                            <a href="#">@ globex</a>
                         </div>
                     </div>
                 </div>
@@ -707,7 +819,7 @@
                     <div class="instagram__item" th:style="'background-image: url(' + @{/img/instagram/insta-6.jpg} + ');'">
                         <div class="instagram__text">
                             <i class="fa fa-instagram"></i>
-                            <a href="#">@ ashion_shop</a>
+                            <a href="#">@ globex</a>
                         </div>
                     </div>
                 </div>

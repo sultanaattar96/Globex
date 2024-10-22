@@ -59,6 +59,47 @@
             </div>
         </div>
     </section>
+    
+    <!-- Recommended Products Section Begin -->
+<section class="recommended-products spad">
+    <div class="container">
+        <div class="section-title">
+            <h4>Recommended for You (LLM)</h4>
+        </div>
+        <div class="row property__gallery">
+            <div th:each="recommendation : ${recommendations}" class="col-lg-3 col-md-4 col-sm-6 mix">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg">
+                        <img th:src="@{'/products/image/' + ${recommendation.id}}" alt="Product Image" class="product-image" />
+                        <ul class="product__hover">
+                            <li><a th:href="@{'/products/image/' + ${recommendation.id}}" class="image-popup"><span class="arrow_expand"></span></a></li>
+                            <li>
+                                <a href="javascript:void(0);" class="like-button" th:data-product-id="${recommendation.id}">
+                                    <span class="icon_heart_alt"></span>
+                                </a>
+                            </li>
+                            <li><a th:href="@{'/cart/add/' + ${recommendation.id}}"><span class="icon_bag_alt"></span></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a th:href="@{'/products/' + ${recommendation.id}}" th:text="${recommendation.name}"></a></h6>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product__price" th:text="${'$ ' + recommendation.price}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Recommended Products Section End -->
+
+
 
     <!-- Include Footer -->
     <div th:replace="footer :: footer"></div>

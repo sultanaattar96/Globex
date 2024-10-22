@@ -1,1 +1,18 @@
-Hi
+<!-- src/main/resources/templates/admin/dashboard.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to the Admin Dashboard</h1>
+    <p>Here you can manage the application settings, users, and more.</p>
+
+    <ul>
+        <li><a th:href="@{/admin/users}">Manage Users</a></li>
+        <li><a th:href="@{/admin/products}">Manage Products</a></li>
+    </ul>
+
+    <a th:href="@{/api/v1/admin/logout}">Logout</a>
+</body>
+</html>

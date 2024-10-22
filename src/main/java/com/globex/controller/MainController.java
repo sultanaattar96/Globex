@@ -2,13 +2,16 @@ package com.globex.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.globex.dto.ProductDTO;
 import com.globex.model.Product;
 import com.globex.service.ProductService;
+import com.globex.service.RecommendationService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +21,10 @@ import org.slf4j.LoggerFactory;
 public class MainController {
 
     private final ProductService productService;
+    
+    @Autowired
+    private RecommendationService recommendationService;
+    
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
     public MainController(ProductService productService) {
@@ -34,6 +41,7 @@ public class MainController {
         List<Product> products = productService.getAllProducts();
         logger.info("Loaded products: {}", products);
         model.addAttribute("products", products);
+        
         return "index";
     }
 }

@@ -1,5 +1,6 @@
 package com.globex.controller;
 
+import com.globex.dto.ProductDTO;
 import com.globex.model.Product;
 import com.globex.model.Rating;
 import com.globex.model.Users;
@@ -8,6 +9,7 @@ import com.globex.repository.RatingRepository;
 import com.globex.repository.UserRepository;
 import com.globex.service.LikeService;
 import com.globex.service.ProductService;
+import com.globex.service.RecommendationService;
 import com.globex.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,6 +50,9 @@ public class ProductController {
 
     @Autowired
     private LikeService likeService;
+    
+    @Autowired
+    private RecommendationService recommendationService;
 
     @GetMapping("/index")
     public String showIndexPage(Model model) {
@@ -59,10 +64,35 @@ public class ProductController {
         if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
             userEmail = ((UserDetails) authentication.getPrincipal()).getUsername();
         }
+        
+        // Fetch Best Sellers
+        List<Product> bestSellers = productRepository.findTop10ByOrderBySalesCountDesc();
+        model.addAttribute("bestSellers", bestSellers);
+
+        // Fetch Trending Products
+        List<Product> trendingProducts = productRepository.findTop10ByOrderByRecentViewsDesc();
+        model.addAttribute("trendingProducts", trendingProducts);
+        
         model.addAttribute("userEmail", userEmail);
 
         model.addAttribute("products", products);
+        
+        Users currentUser = getCurrentUser(); // Placeholder for actual user retrieval
+        Long userId = currentUser.getId();
+        // Fetch hybrid recommendations
+        List<ProductDTO> recommendedProducts = recommendationService.recommendProductsHybrid(currentUser);
+
+        // Add the recommended products to the model
+        model.addAttribute("recommendedProducts", recommendedProducts);
+        
+        System.out.print("Sultana Text recommendedHybridProducts  ::::::::::::    " + recommendedProducts);
+        
         return "index"; // Return the Thymeleaf template name
+    }
+    
+    private Users getCurrentUser() {
+        // Implement logic to retrieve the current user
+        return new Users(); // Placeholder implementation
     }
 
     @GetMapping("/image/{id}")
@@ -86,6 +116,15 @@ public class ProductController {
         if (product.isEmpty()) {
             return "error/404"; // Ensure you have a 404.html page in templates/error
         }
+        
+        Product proCount = productService.getProductById(id).orElseThrow(() -> 
+        new IllegalArgumentException("Product not found"));
+
+        
+        // Increment the recent views count
+        proCount.setRecentViews(proCount.getRecentViews() + 1);
+        productService.saveProduct(proCount);
+        
         model.addAttribute("product", product.get());
         return "products/details"; // Ensure you have a details.html page in templates/product
     }

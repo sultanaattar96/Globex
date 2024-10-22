@@ -71,10 +71,13 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password");
         }
+        
+        System.out.println("User: " + username + ", Sultanaaaaaaaa Authorities: " + user.getRoles());
 
         return new User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
 
     }
+    
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
 

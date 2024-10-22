@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.globex.dto.UserRegistrationDto;
 import com.globex.model.Users;
@@ -45,15 +46,16 @@ public class AdminRegistrationController {
         return "redirect:/api/v1/admin/registration?success";
     }
     
-    @GetMapping("/login")
+    /*@GetMapping("/login")
     public String getAdminLoginPage(Model model) {
-        return "admin_login"; // Admin login page template
-    }
+        return "admin/admin_login"; // Admin login page template
+    }*/
 
-    @PostMapping("/login")
+    /*@PostMapping("/login")
     public String adminLogin(String username, String password) {
         // Delegate authentication to Spring Security
         // You need to configure Spring Security for this
         return "redirect:/admin/dashboard"; // Redirect to admin dashboard or relevant page
-    }
+    }*/
+
 }
